@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -17,12 +18,14 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
+import com.example.uasmkppb.models.Restaurant;
 import com.example.uasmkppb.models.Restaurants;
 
 import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
@@ -46,6 +49,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holders, int position) {
         final MyViewHolder holder = holders;
+//        Restaurants model = restaurants.get(position);
         Restaurants model = (Restaurants) restaurants.toArray()[position];
 
         RequestOptions requestOptions = new RequestOptions();
@@ -79,7 +83,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
         if(Utils.isValidStr(model.getRestaurant().getCuisines()))
             holder.cuisine.setText(model.getRestaurant().getCuisines());
         holder.currency.setText(model.getRestaurant().getCurrency());
-        holder.rangerPrice.setText(model.getRestaurant().getPriceRange());
+        holder.rangerPrice.setText(model.getRestaurant().getAverageCostForTwo());
         if(model.getRestaurant().getHasOnlineDelivery() == 1){
             holder.delivery.setText("Delivery Ready");
         }else {
@@ -98,8 +102,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
     }
 
     public interface OnItemClickListener {
-        void OnItemClick(View view, int position);
-
         void onItemClick(View v, int adapterPosition);
     }
 
@@ -109,11 +111,14 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
         ImageView imageView;
         ProgressBar progressBar;
         OnItemClickListener onItemClickListener;
+        CardView container;
 
         public MyViewHolder(View itemView, OnItemClickListener onItemClickListener){
             super(itemView);
 
             itemView.setOnClickListener(this);
+
+            container = itemView.findViewById(R.id.container);
             tittle = itemView.findViewById(R.id.title);
             location = itemView.findViewById(R.id.location);
             rating = itemView.findViewById(R.id.textRating);
@@ -124,12 +129,12 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
             rangerPrice = itemView.findViewById(R.id.price_range);
             progressBar = itemView.findViewById(R.id.progress);
 
-            this.onItemClickListener = this.onItemClickListener;
+            this.onItemClickListener = onItemClickListener;
         }
 
         @Override
         public void onClick(View v) {
-            //onItemClickListener.onItemClick(v, getAdapterPosition());
+            onItemClickListener.onItemClick(v, getAdapterPosition());
         }
     }
 }

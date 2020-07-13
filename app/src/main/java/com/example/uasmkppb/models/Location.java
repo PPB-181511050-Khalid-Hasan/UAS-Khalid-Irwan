@@ -15,10 +15,10 @@ public class Location {
     private String city;
     @SerializedName("latitude")
     @Expose
-    private double latitude;
+    private String  latitude;
     @SerializedName("longitude")
     @Expose
-    private double longitude;
+    private String longitude;
     @SerializedName("zipcode")
     @Expose
     private String zipcode;
@@ -50,19 +50,19 @@ public class Location {
         this.city = city;
     }
 
-    public double getLatitude() {
+    public String getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(double latitude) {
+    public void setLatitude(String latitude) {
         this.latitude = latitude;
     }
 
-    public double getLongitude() {
+    public String getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(double longitude) {
+    public void setLongitude(String longitude) {
         this.longitude = longitude;
     }
 

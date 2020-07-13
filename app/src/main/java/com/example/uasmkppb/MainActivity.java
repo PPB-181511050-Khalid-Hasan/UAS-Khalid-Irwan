@@ -8,7 +8,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -69,23 +71,39 @@ public class MainActivity extends AppCompatActivity {
                     recyclerView.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
 
-//                    if(!restaurants.isEmpty()){
-//                        Toast.makeText(MainActivity.this, "succses no empty!", Toast.LENGTH_SHORT).show();
-//                    }
-//                    Toast.makeText(MainActivity.this, "succses!", Toast.LENGTH_SHORT).show();
+                    intListener();
                 }else {
-//                    if(!response.isSuccessful()){
-//                        Toast.makeText(MainActivity.this, "No succses!", Toast.LENGTH_SHORT).show();
-//
-//                    }else {
-//                        Toast.makeText(MainActivity.this, "No Result!", Toast.LENGTH_SHORT).show();
-//                    }
+                    Toast.makeText(MainActivity.this, "No Result!", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<Search> call, Throwable t) {
                 Toast.makeText(MainActivity.this, "Fail", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void intListener(){
+        adapter.setOnItemClickListener(new Adapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View v, int adapterPosition) {
+                Intent intent = new Intent(MainActivity.this, RestaurantDetailActivity.class);
+
+                Restaurants restaurant = restaurants.get(adapterPosition);
+                intent.putExtra("url", restaurant.getRestaurant().getUrl());
+                intent.putExtra("title", restaurant.getRestaurant().getName());
+                intent.putExtra("img", restaurant.getRestaurant().getThumb());
+                intent.putExtra("address", restaurant.getRestaurant().getLocation().getAddress());
+                intent.putExtra("cuisine", restaurant.getRestaurant().getCuisines());
+                intent.putExtra("latitude",restaurant.getRestaurant().getLocation().getLatitude());
+                intent.putExtra("longitude",restaurant.getRestaurant().getLocation().getLongitude());
+                intent.putExtra("currency",restaurant.getRestaurant().getCurrency());
+                intent.putExtra("price_range", restaurant.getRestaurant().getAverageCostForTwo());
+                intent.putExtra("rating", restaurant.getRestaurant().getUserRating().getAggregateRating());
+                intent.putExtra("delivery", restaurant.getRestaurant().getHasOnlineDelivery());
+
+                startActivity(intent);
             }
         });
     }

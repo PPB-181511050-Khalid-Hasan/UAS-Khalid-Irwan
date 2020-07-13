@@ -20,7 +20,7 @@ public class Restaurant {
     private Location location;
     @SerializedName("average_cost_for_two")
     @Expose
-    private int averageCostForTwo;
+    private String averageCostForTwo;
     @SerializedName("price_range")
     @Expose
     private String priceRange;
@@ -108,11 +108,11 @@ public class Restaurant {
         this.location = location;
     }
 
-    public int getAverageCostForTwo() {
+    public String getAverageCostForTwo() {
         return averageCostForTwo;
     }
 
-    public void setAverageCostForTwo(int averageCostForTwo) {
+    public void setAverageCostForTwo(String averageCostForTwo) {
         this.averageCostForTwo = averageCostForTwo;
     }
 

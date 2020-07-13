@@ -13,10 +13,12 @@
         android:layout_marginTop="7dp"
         android:layout_marginBottom="7dp"
         app:cardElevation="@dimen/cardview_default_elevation"
-        app:cardCornerRadius="10dp">
+        app:cardCornerRadius="10dp"
+        android:id="@+id/container">
 
         <RelativeLayout
-            android:layout_width="match_parent"
+            android:background="?android:attr/selectableItemBackground"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
             <ImageView
@@ -24,126 +26,144 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:scaleType="centerCrop"
-                tools:ignore="UnusedAttribute"/>
+                tools:ignore="UnusedAttribute" />
+
             <ImageView
                 android:id="@+id/shadow_bottom"
-                android:src="@drawable/bottom_shadow"
-                android:layout_alignBottom="@+id/img"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"/>
+                android:layout_height="80dp"
+                android:layout_alignBottom="@+id/img"
+                android:src="@drawable/bottom_shadow" />
 
             <ProgressBar
                 android:id="@+id/progress"
+                style="@android:style/Widget.ProgressBar.Small"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="70dp"
-                style="@android:style/Widget.ProgressBar.Small"/>
+                android:layout_marginTop="70dp" />
+
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/price_rangeTEXT"
+                android:layout_width="85dp"
                 android:layout_height="30dp"
+                android:layout_alignTop="@+id/layoutDate"
+                android:layout_marginLeft="16dp"
                 android:drawablePadding="10dp"
                 android:ellipsize="end"
-                android:maxLines="1"
-                android:textColor="@android:color/white"
-                android:singleLine="true"
-                android:layout_marginRight="160dp"
-                android:layout_marginLeft="16dp"
-                android:text="Price Range :"
                 android:gravity="bottom"
-                android:layout_alignRight="@+id/layoutDate"
-                android:layout_alignTop="@+id/layoutDate"
-                android:layout_alignEnd="@+id/layoutDate"/>
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="Price Range :"
+                android:textColor="@android:color/white" />
 
             <TextView
                 android:id="@+id/price_range"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="30dp"
+                android:layout_alignStart="@+id/price_rangeTEXT"
+                android:layout_alignTop="@+id/layoutDate"
+                android:layout_marginLeft="85dp"
                 android:drawablePadding="10dp"
                 android:ellipsize="end"
-                android:maxLines="1"
-                android:textColor="@android:color/white"
-                android:singleLine="true"
-                android:layout_marginRight="160dp"
-                android:layout_marginLeft="110dp"
-                android:text="4"
                 android:gravity="bottom"
-                android:layout_alignRight="@+id/layoutDate"
-                android:layout_alignTop="@+id/layoutDate"
-                android:layout_alignEnd="@+id/layoutDate"/>
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="4"
+                android:textColor="@android:color/white" />
 
             <TextView
                 android:id="@+id/currency"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="30dp"
+                android:layout_alignTop="@+id/layoutDate"
+                android:layout_alignParentEnd="@+id/price_range"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="-1dp"
+                android:layout_marginEnd="150dp"
+                android:layout_marginBottom="150dp"
+                android:layout_toEndOf="@+id/price_range"
                 android:drawablePadding="10dp"
                 android:ellipsize="end"
-                android:maxLines="1"
-                android:textColor="@android:color/white"
-                android:singleLine="true"
-                android:layout_marginRight="160dp"
-                android:layout_marginLeft="130dp"
-                android:text="$"
                 android:gravity="bottom"
-                android:layout_alignRight="@+id/layoutDate"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="$"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
                 android:layout_alignTop="@+id/layoutDate"
-                android:layout_alignEnd="@+id/layoutDate"/>
+                android:layout_alignParentEnd="@+id/price_range"
+                android:layout_marginStart="-150dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="150dp"
+                android:layout_marginBottom="150dp"
+                android:layout_toEndOf="@+id/currency"
+                android:drawablePadding="10dp"
+                android:ellipsize="end"
+                android:gravity="bottom"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="/2 People"
+                android:textColor="@android:color/white" />
 
             <FrameLayout
                 android:id="@+id/layoutDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/img"
-                android:padding="5dp"
-                android:background="@drawable/round_white"
                 android:layout_alignParentRight="true"
+                android:layout_marginTop="-50dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginTop="-50dp">
+                android:background="@drawable/round_white"
+                android:padding="5dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Rating : "
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="5dp"
                     android:layout_marginRight="10dp"
-                    android:textColor="#606060"/>
+                    android:text="Rate "
+                    android:textColor="#606060" />
+
                 <TextView
                     android:id="@+id/textRating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="4"
-                    android:layout_marginLeft="70dp"
+                    android:layout_marginLeft="40dp"
                     android:layout_marginRight="10dp"
-                    android:textColor="#606060"/>
+                    android:text="4"
+                    android:textColor="#606060" />
 
             </FrameLayout>
 
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-light"
-                android:textStyle="bold"
-                android:text="Title"
-                android:textSize="17sp"
-                android:layout_below="@+id/img"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
                 android:id="@+id/title"
-                />
-
-            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-light"
-                android:textStyle="bold"
-                android:text=""
-                android:id="@+id/delivery"
-                android:layout_below="@+id/location"
+                android:layout_below="@+id/img"
                 android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginRight="16dp"
+                android:fontFamily="sans-serif-light"
+                android:text="Title"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/delivery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/location"
                 android:layout_alignParentRight="true"
-            />
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="16dp"
+                android:fontFamily="sans-serif-light"
+                android:text=""
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/location"
@@ -153,24 +173,20 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="16dp"
-                android:text="location"/>
+                android:text="location" />
 
             <TextView
                 android:id="@+id/cuisines"
                 android:layout_width="220dp"
                 android:layout_height="20dp"
-                android:maxLines="1"
-                android:singleLine="true"
-                android:drawablePadding="10dp"
-                android:textColor="@color/design_default_color_primary"
                 android:layout_below="@+id/location"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:text="source"
+                android:drawablePadding="10dp"
                 android:ellipsize="end"
-                />
-
+                android:text="source"
+                android:textColor="@color/design_default_color_primary" />
 
 
         </RelativeLayout>
